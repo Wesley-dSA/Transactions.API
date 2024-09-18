@@ -1,6 +1,6 @@
 ﻿namespace Transactions.API.Services.Models
 {
-    public class Transactions
+    public class Transaction
     {
         public string IdTransaction { get; set; }
         public string Idrecipient { get; set; }

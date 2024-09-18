@@ -10,7 +10,7 @@ namespace Transactions.API.Controllers
     public class TransactionsController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<List<Services.Models.Transactions>> SearchAllTransactions()
+        public ActionResult<List<Services.Models.Transaction>> SearchAllTransactions()
         {
             return Ok();
         } 
