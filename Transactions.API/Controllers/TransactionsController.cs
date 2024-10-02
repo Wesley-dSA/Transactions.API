@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Transactions.API.Services.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Users.API.Application.ViewModels;
 
 namespace Transactions.API.Controllers
 {
@@ -9,10 +7,34 @@ namespace Transactions.API.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<List<Services.Models.Transactions>> SearchAllTransactions()
+        private readonly ITransactionService _TransactionService = transactionService;
+
+        [HttpGet("id/{id:int}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetById(int id)
         {
-            return Ok();
-        } 
+            var trans = await _TransactionService.GetByIdAsync(id);
+
+            if (trans is null)
+                return NotFound();
+
+            return Ok(trans.ToViewModel());
+        }
+
+        [HttpGet("document/{document:minlength(11):maxlength(14)}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetByDocument(string document)
+        {
+            var trans = await _TransactionService.GetByDocumentAsync(document);
+
+            if (trans is null)
+                return NotFound();
+
+            return Ok(trans.ToViewModel());
+        }
     }
 }
