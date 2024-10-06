@@ -1,28 +1,28 @@
 ﻿using Transactions.API.Services.DTOs;
+using Transactions.API.Application.ViewModels;
 using Transactions.API.Services.Models;
-using Users.API.Application.ViewModels;
 
 namespace Transactions.API.Application.Extensions;
 
 public static class TransactionExtensions
 {
-    public static IEnumerable<TransactionViewModel> ToViewModel(this IEnumerable<TransactionsDTO> trans)
+    public static IEnumerable<TransactionViewModel> ToViewModel(this IEnumerable<TransactionDTO> trans)
     {
         return trans.Select(ToViewModel);
     }
 
-    public static TransactionViewModel ToViewModel(this TransactionsDTO trans)
+    public static TransactionViewModel ToViewModel(this TransactionDTO transaction)
     {
-        return new TransactionViewModel(trans.IdTransaction, trans.Idrecipient, trans.Valor, trans.Idsender);
+        return new TransactionViewModel(transaction.IdTransaction, transaction.IdRecipient, transaction.Valor, transaction.Idsender);
     }
 
-    public static IEnumerable<TransactionsDTO> ToDTO(this IEnumerable<Services.Models.Transactions> trans)
+    public static IEnumerable<TransactionDTO> ToDTO(this IEnumerable<Transaction> trans)
     {
         return trans.Select(ToDTO);
     }
 
-    public static TransactionsDTO ToDTO(this Services.Models.Transactions trans)
+    public static TransactionDTO ToDTO(this Transaction trans)
     {
-        return new TransactionsDTO(trans.IdTransaction, trans.Idrecipient, trans.Valor, trans.Idsender);
+        return new TransactionDTO(trans.IdTransaction, trans.IdRecipient, trans.Valor, trans.Idsender);
     }
 }
