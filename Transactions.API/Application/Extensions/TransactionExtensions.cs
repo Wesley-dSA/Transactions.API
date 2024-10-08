@@ -13,7 +13,7 @@ public static class TransactionExtensions
 
     public static TransactionViewModel ToViewModel(this TransactionDTO transaction)
     {
-        return new TransactionViewModel(transaction.IdTransaction, transaction.IdRecipient, transaction.Valor, transaction.Idsender);
+        return new TransactionViewModel(transaction.Id, transaction.IdRecipient, transaction.Valor, transaction.Idsender);
     }
 
     public static IEnumerable<TransactionDTO> ToDTO(this IEnumerable<Transaction> trans)
@@ -23,6 +23,6 @@ public static class TransactionExtensions
 
     public static TransactionDTO ToDTO(this Transaction trans)
     {
-        return new TransactionDTO(trans.IdTransaction, trans.IdRecipient, trans.Valor, trans.Idsender);
+        return new TransactionDTO(trans.Id, trans.IdRecipient, trans.Valor, trans.Idsender);
     }
 }

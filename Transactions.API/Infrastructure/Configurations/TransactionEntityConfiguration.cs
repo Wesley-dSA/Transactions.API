@@ -10,7 +10,7 @@ public class TransactionEntityConfiguration : IEntityTypeConfiguration<Transacti
     {
         builder.ToTable("Transaction");
 
-        builder.Property(e => e.IdTransaction)
+        builder.Property(e => e.Id)
             .ValueGeneratedOnAdd()
             .HasMaxLength(100);
         

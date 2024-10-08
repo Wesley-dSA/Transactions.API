@@ -1,2 +1,2 @@
 ﻿namespace Transactions.API.Application.ViewModels;
-public record TransactionViewModel(string IdTransaction, string IdRecipient, decimal Valor, string Idsender);
+public record TransactionViewModel(int Id, string IdRecipient, decimal Valor, string Idsender);

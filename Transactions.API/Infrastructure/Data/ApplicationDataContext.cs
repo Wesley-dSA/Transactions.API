@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Transactions;
+using Transactions.API.Services.Models;
 
 namespace Transactions.API.Infrastructure.Data;
 
 public class ApplicationDataContext : DbContext
 {
-    public virtual DbSet<Transaction> Transactions { get; set; }
+    public virtual DbSet<Transaction> Transaction { get; set; }
 
     public ApplicationDataContext() : base() { }
 

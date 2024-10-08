@@ -2,5 +2,5 @@
 
 namespace Transactions.API.Services.DTOs
 {
-    public record TransactionDTO(string IdTransaction, string IdRecipient, decimal Valor, string Idsender);
+    public record TransactionDTO(int Id, string IdRecipient, decimal Valor, string Idsender);
 }

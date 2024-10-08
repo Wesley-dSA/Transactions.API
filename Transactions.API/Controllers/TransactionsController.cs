@@ -7,7 +7,7 @@ namespace Transactions.API.Controllers;
 
 [Route("api/transactions")]
 [ApiController]
-public class TransactionsController : ControllerBase
+public class TransactionsController (ITransactionService transactionService): ControllerBase
 {
     private readonly ITransactionService _transactionService = transactionService;
 
@@ -15,9 +15,9 @@ public class TransactionsController : ControllerBase
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(int Id)
     {
-        var trans = await _transactionService.GetByIdAsync(id);
+        var trans = await _transactionService.GetByIdAsync(Id);
 
         if (trans is null)
             return NotFound();
@@ -25,15 +25,30 @@ public class TransactionsController : ControllerBase
         return Ok(trans.ToViewModel());
     }
 
-    [HttpGet("document/{document:minlength(11):maxlength(14)}")]
+    [HttpGet("Idsender/{Idsender}")]
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetByDocument(string document)
+    public async Task<IActionResult> GetByInsender(string Idsender)
     {
-        var trans = await _transactionService.GetByDocumentAsync(document);
+        var trans = await _transactionService.GetByIdsenderAsync(Idsender);
 
         if (trans is null)
+            return NotFound();
+
+        return Ok(trans.ToViewModel());
+    }
+
+    [HttpGet("IdRecipient/{IdRecipient}")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
+
+    public async Task<IActionResult> GetByIdRecipient(string IdRecipient)
+    {
+        var trans = await _transactionService.GetByIdRecipientAsync(IdRecipient);
+
+        if( trans is null)
             return NotFound();
 
         return Ok(trans.ToViewModel());
