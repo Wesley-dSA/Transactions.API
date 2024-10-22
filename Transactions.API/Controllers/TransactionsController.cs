@@ -29,7 +29,7 @@ public class TransactionsController (ITransactionService transactionService): Co
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(TransactionViewModel), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetByInsender(string Idsender)
+    public async Task<IActionResult> GetByIdsender(string Idsender)
     {
         var trans = await _transactionService.GetByIdsenderAsync(Idsender);
 

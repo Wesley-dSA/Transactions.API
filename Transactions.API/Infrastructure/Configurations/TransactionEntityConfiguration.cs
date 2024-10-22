@@ -12,7 +12,28 @@ public class TransactionEntityConfiguration : IEntityTypeConfiguration<Transacti
 
         builder.Property(e => e.Id)
             .ValueGeneratedOnAdd()
-            .HasMaxLength(100);
+            .HasMaxLength(1000);
+
+        builder.Property(e =>e.Idsender)
+            .IsRequired()
+            .HasMaxLength(1000);
         
+        builder.Property(e => e.IdRecipient)
+            .IsRequired()
+            .HasMaxLength(1000);
+
+        builder.Property(e => e.Valor)
+            .HasDefaultValue(0)
+            .HasColumnType("decimal");
+
+
+        builder.HasKey(e => e.Id);
+
+        builder.HasIndex(e => e.Idsender)
+            .IsUnique();
+
+        builder.HasIndex(e => e.IdRecipient)
+            .IsUnique();
+           
     }
 }

@@ -7,7 +7,7 @@ public interface ITransactionService
 {
     Task<TransactionDTO?> GetByIdAsync(int Id);
     Task<TransactionDTO?> GetByIdsenderAsync(string Idsender);
-    Task<TransactionDTO?> GetByIdRecipientAsync(string Idrecipient);
+    Task<TransactionDTO?> GetByIdRecipientAsync(string IdRecipient);
 
 }
 
@@ -20,6 +20,11 @@ public class TransactionService(ITransactionRepository transactionRepository) : 
         var trans = await _transactionRepository.GetByIdAsync(Id);
 
         return trans?.ToDTO();
+    }
+
+    public async Task<object?> GetByIdRecipientAsync(object document)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<TransactionDTO?> GetByIdsenderAsync(string Idsender)
