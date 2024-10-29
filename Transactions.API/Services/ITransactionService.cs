@@ -22,7 +22,7 @@ public class TransactionService(ITransactionRepository transactionRepository) : 
         return trans?.ToDTO();
     }
 
-    public async Task<object?> GetByIdRecipientAsync(object document)
+    public Task<object?> GetByIdsenderAsync(object Idsender)
     {
         throw new NotImplementedException();
     }
@@ -31,6 +31,17 @@ public class TransactionService(ITransactionRepository transactionRepository) : 
     {
         var trans = await _transactionRepository.GetByIdsenderAsync(Idsender);
 
+        return trans?.ToDTO();
+    }
+
+    public Task<object?> GetByIdRecipientAsync(object IdRecipient)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<TransactionDTO?> GetByIdRecipientAsync(string IdRecipient)
+    {
+        var trans = await _transactionRepository.GetByIdRecipientAsync(IdRecipient);
         return trans?.ToDTO();
     }
 }

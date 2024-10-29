@@ -29,6 +29,6 @@ public class TransactionRepository(ApplicationDataContext dataContext) : ITransa
 
     public async Task<Transaction?> GetByIdRecipientAsync(string IdRecipient)
     {
-        return _transaction.AsNoTracking().FirstOrDefaultAsync(u => u.IdRecipient == IdRecipient);
+        return await _transaction.AsNoTracking().FirstOrDefaultAsync(u => u.IdRecipient == IdRecipient);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Xunit;
 using Transactions.API.Application.Extensions;
 using Transactions.API.Controllers;
 using Transactions.API.Services;
 using Transactions.API.Services.DTOs;
+using Xunit;
 
 namespace Transactions.UnitTests.Controllers
 {
